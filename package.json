@@ -23,6 +23,7 @@
     "deploy": "nuxthub deploy",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "typecheck": "nuxt typecheck",
     "logs": "wrangler pages deployment tail",
     "logs:preview": "wrangler pages deployment tail --environment preview"
