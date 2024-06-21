@@ -1,5 +1,5 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
-import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme';
+import type { Config } from 'tailwindcss';
 
 export default <Partial<Config>>{
   theme: {
@@ -7,4 +7,4 @@ export default <Partial<Config>>{
       sans: ['Inter var', 'Inter', ...defaultTheme.fontFamily.sans]
     }
   }
-}
+};

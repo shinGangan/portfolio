@@ -8,19 +8,19 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxthub/core',
     '@vueuse/nuxt',
-    'nuxt-auth-utils',
+    'nuxt-auth-utils'
   ],
 
   hub: {
-    blob: true,
+    blob: true
   },
 
   ui: {
-    icons: ['simple-icons'],
+    icons: ['simple-icons']
   },
 
   experimental: {
-    viewTransition: true,
+    viewTransition: true
   },
 
   devtools: { enabled: true },
@@ -29,8 +29,9 @@ export default defineNuxtConfig({
     config: {
       stylistic: {
         quotes: 'single',
-        semi: true,
-      },
-    },
-  },
+        commaDangle: 'never',
+        semi: true
+      }
+    }
+  }
 });

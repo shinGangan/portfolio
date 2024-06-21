@@ -8,9 +8,9 @@ defineProps({
     type: Boolean,
     default: false
   }
-})
+});
 
-const isSmallScreen = useMediaQuery('(max-width: 1024px)')
+const isSmallScreen = useMediaQuery('(max-width: 1024px)');
 </script>
 
 <template>

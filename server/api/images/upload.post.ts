@@ -1,5 +1,5 @@
 export default eventHandler(async (event) => {
-  await requireUserSession(event)
+  await requireUserSession(event);
 
   // https://hub.nuxt.com/docs/storage/blob#handleupload
   return hubBlob().handleUpload(event, {
@@ -7,5 +7,5 @@ export default eventHandler(async (event) => {
     addRandomSuffix: true,
     maxSize: '8MB',
     types: ['image/jpeg', 'image/png', 'image/gif', 'image/heic', 'image/webp', 'image/jpg']
-  })
-})
+  });
+});

@@ -1,30 +1,30 @@
 <script setup lang="ts">
-const emit = defineEmits(['closeLogin'])
-const { fetch: refreshSession } = useUserSession()
-const password = ref('')
-const loading = ref(false)
+const emit = defineEmits(['closeLogin']);
+const { fetch: refreshSession } = useUserSession();
+const password = ref('');
+const loading = ref(false);
 
-const toast = useToast()
+const toast = useToast();
 
 async function login() {
-  if (loading.value || !password.value) return
-  loading.value = true
+  if (loading.value || !password.value) return;
+  loading.value = true;
   await $fetch('/api/auth', {
     method: 'POST',
     body: { password: password.value }
   })
     .then(async () => {
-      await refreshSession()
-      emit('closeLogin')
+      await refreshSession();
+      emit('closeLogin');
     })
     .catch((err) => {
       toast.add({
         title: `Error ${err.statusCode}`,
         description: `${err.data?.message || err.message}. Please try again`,
         color: 'red'
-      })
-    })
-  loading.value = false
+      });
+    });
+  loading.value = false;
 }
 </script>
 

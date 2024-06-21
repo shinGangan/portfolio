@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineEmits(['resetFilter', 'closeFilter'])
+defineEmits(['resetFilter', 'closeFilter']);
 </script>
 
 <template>

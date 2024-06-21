@@ -16,11 +16,11 @@ const props = defineProps({
     type: String,
     default: ''
   }
-})
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
-const value = useVModel(props, 'modelValue', emit)
+const value = useVModel(props, 'modelValue', emit);
 </script>
 
 <template>
