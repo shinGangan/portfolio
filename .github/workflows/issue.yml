@@ -1,4 +1,4 @@
-name: edit Issue
+name: Edit Issue
 on:
   issues:
     types:
