@@ -1,0 +1,20 @@
+name: 'Simple Issue template'
+description: 'chore templates'
+title: 'chore: '
+labels: ['🏠 chore']
+assignees:
+  - shinGangan
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+    validations:
+      required: true
+  - type: textarea
+    id: todo
+    attributes:
+      label: TODO
+      placeholder: '- [ ]'
+    validations:
+      required: false
