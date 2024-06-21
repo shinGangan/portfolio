@@ -1,4 +1,7 @@
 export default defineAppConfig({
+  title: 'Gangan\'s Activity Gallery',
+  description: 'This is my portfolio for Gangan (shinGangan). The trajectory of my activities.',
+
   ui: {
     primary: 'white',
     gray: 'zinc',
@@ -40,5 +43,12 @@ export default defineAppConfig({
         background: 'bg-gray-500 dark:bg-gray-100'
       }
     }
+  },
+
+  socials: {
+    nuxters: 'https://nuxters.nuxt.com/shinGangan',
+    github: 'https://github.com/shinGangan',
+    x: 'https://x.com/gangan_nikki',
+    zenn: 'https://zenn.dev/gangannikki'
   }
 });
