@@ -1,7 +1,21 @@
 {
-  "name": "nuxthub-starter",
-  "type": "module",
+  "name": "@shinGangan/portfolio",
+  "description": "My activity trajectory",
+  "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "gangan",
+    "url": "https://github.com/shinGangan/portfolio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinGangan/portfolio.git"
+  },
+  "type": "module",
+  "packageManager": "pnpm@9.3.0",
+  "engines": {
+    "node": "^20.0.0"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
