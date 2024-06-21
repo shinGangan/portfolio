@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { socials, title } = useAppConfig();
+
 const isOpen = ref(false);
 
 const dropZoneRef = ref<HTMLElement>();
@@ -42,13 +44,7 @@ async function deleteFile(pathname: string) {
 
   await deleteImage(pathname)
     .catch(() => toast.add({ title: 'An error occured', description: 'Please try again', color: 'red' }))
-    .finally(() => deletingImg.value = '');
-}
-
-async function clearSession() {
-  disconnect.value = true;
-
-  await clear().finally(() => disconnect.value = false);
+    .finally(() => (deletingImg.value = ''));
 }
 </script>
 
@@ -77,19 +73,31 @@ async function clearSession() {
 
       <BottomMenu class="bottom-menu">
         <template #logo>
-          <img
-            src="/logo.svg"
-            width="29"
-            height="20"
-          >
+          <a :href="socials.nuxters">
+            <img
+              src="/logo.svg"
+              width="29"
+              height="20"
+            >
+          </a>
         </template>
         <template #description>
           <div class="flex gap-x-4 items-center">
+            <NuxtLink
+              :to="socials.x"
+              target="blank"
+              class="flex items-center"
+            >
+              <UIcon
+                name="i-simple-icons-x"
+                class="w-5 h-5"
+              />
+            </NuxtLink>
             <p class="bottom-menu-description text-sm sm:text-base leading-tight sm:leading-normal">
-              Media Gallery template
+              Where to find me
             </p>
             <NuxtLink
-              to="https://github.com/Flosciante/nuxt-image-gallery"
+              :to="socials.github"
               target="blank"
               class="flex items-center"
             >
@@ -103,21 +111,12 @@ async function clearSession() {
         <template #buttons>
           <div class="flex gap-x-2">
             <UButton
-              v-if="loggedIn"
-              :loading="disconnect"
-              icon="i-heroicons-power-20-solid"
-              color="red"
-              variant="ghost"
-              @click="clearSession"
-            />
-            <UButton
-              v-else
-              label="Sign in"
+              label="Show articles"
               color="green"
               variant="ghost"
-              aria-label="Sign in"
+              aria-label="Show articles"
               class="mr-4 sm:mr-0"
-              @click="isOpen = true"
+              :to="socials.zenn"
             />
           </div>
         </template>
@@ -148,10 +147,10 @@ async function clearSession() {
           class="text-2xl text-white flex flex-col gap-y-4 items-center justify-center h-full w-full pb-8"
         >
           <h1 class="font-medium text-5xl">
-            Welcome to image gallery
+            Welcome to {{ title }}
           </h1>
           <p class="text-gray-400">
-            You must be logged in to start uploading images
+            I'm an Engineer who mainly works on the web. I'm also a Nuxt contributor.
           </p>
         </div>
 

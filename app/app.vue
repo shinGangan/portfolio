@@ -4,20 +4,19 @@ const { getImages } = useFile();
 useHead({
   link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
-    lang: 'en'
+    lang: 'ja'
   }
 });
 
-const title = 'NuxtHub Image Gallery Starter';
-const description
-  = 'A Nuxt template to build your full-stack image gallery application on the edge.';
+const { title, description } = useAppConfig();
 
 useSeoMeta({
   title,
   ogTitle: title,
   description,
   ogDescription: description,
-  ogSiteName: 'NuxtHub image gallery template',
+  ogSiteName: title,
+  // TODO: Change the OG Image
   ogImage: 'https://image-gallery.nuxt.dev/social-card.png',
   twitterCard: 'summary_large_image'
 });
