@@ -1,8 +1,8 @@
 export default defineNuxtRouteMiddleware((to) => {
   if (typeof document !== 'undefined' && !document.startViewTransition)
-    return
+    return;
 
   // Disable built-in Vue transitions
   // to.meta.pageTransition = false
-  to.meta.layoutTransition = false
-})
+  to.meta.layoutTransition = false;
+});

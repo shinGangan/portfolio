@@ -4,9 +4,9 @@ defineProps({
     type: Boolean,
     default: false
   }
-})
+});
 
-const route = useRoute()
+const route = useRoute();
 </script>
 
 <template>

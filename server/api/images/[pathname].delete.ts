@@ -1,6 +1,6 @@
 export default eventHandler(async (event) => {
-  await requireUserSession(event)
-  const { pathname } = event.context.params || {}
+  await requireUserSession(event);
+  const { pathname } = event.context.params || {};
 
-  return hubBlob().delete(pathname)
-})
+  return hubBlob().delete(pathname);
+});

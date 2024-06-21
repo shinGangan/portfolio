@@ -1,54 +1,54 @@
 <script setup lang="ts">
-const isOpen = ref(false)
+const isOpen = ref(false);
 
-const dropZoneRef = ref<HTMLElement>()
-const fileInput = ref<HTMLInputElement>()
-const mansoryItem = ref<Array<HTMLElement>>([])
-const deletingImg = ref('')
-const uploadingImg = ref(false)
-const disconnect = ref(false)
+const dropZoneRef = ref<HTMLElement>();
+const fileInput = ref<HTMLInputElement>();
+const mansoryItem = ref<Array<HTMLElement>>([]);
+const deletingImg = ref('');
+const uploadingImg = ref(false);
+const disconnect = ref(false);
 
-const toast = useToast()
-const { uploadImage, deleteImage, images } = useFile()
-const { loggedIn, clear } = useUserSession()
+const toast = useToast();
+const { uploadImage, deleteImage, images } = useFile();
+const { loggedIn, clear } = useUserSession();
 
-const active = useState()
+const active = useState();
 
-const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
+const { isOverDropZone } = useDropZone(dropZoneRef, onDrop);
 
 function openFilePicker() {
-  fileInput.value?.click()
+  fileInput.value?.click();
 }
 
 async function fileSelection(event: Event) {
-  const target = event.target as HTMLInputElement
-  target.files?.[0] && await uploadFile(target.files[0])
+  const target = event.target as HTMLInputElement;
+  target.files?.[0] && await uploadFile(target.files[0]);
 }
 
 async function onDrop(files: File[] | null) {
-  files && await uploadFile(files[0])
+  files && await uploadFile(files[0]);
 }
 
 async function uploadFile(file: File) {
-  uploadingImg.value = true
+  uploadingImg.value = true;
 
   await uploadImage(file)
     .catch(() => toast.add({ title: 'An error occured', description: 'Please try again', color: 'red' }))
-    .finally(() => uploadingImg.value = false)
+    .finally(() => uploadingImg.value = false);
 }
 
 async function deleteFile(pathname: string) {
-  deletingImg.value = pathname
+  deletingImg.value = pathname;
 
   await deleteImage(pathname)
     .catch(() => toast.add({ title: 'An error occured', description: 'Please try again', color: 'red' }))
-    .finally(() => deletingImg.value = '')
+    .finally(() => deletingImg.value = '');
 }
 
 async function clearSession() {
-  disconnect.value = true
+  disconnect.value = true;
 
-  await clear().finally(() => disconnect.value = false)
+  await clear().finally(() => disconnect.value = false);
 }
 </script>
 

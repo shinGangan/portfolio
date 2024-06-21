@@ -1,93 +1,93 @@
 <script setup lang="ts">
-const bottomMenu = ref()
-const imageEl = ref<HTMLImageElement>()
-const magnifierEl = ref<HTMLElement>()
-const imageContainer = ref<HTMLElement>()
-const savingImg = ref(false)
+const bottomMenu = ref();
+const imageEl = ref<HTMLImageElement>();
+const magnifierEl = ref<HTMLElement>();
+const imageContainer = ref<HTMLElement>();
+const savingImg = ref(false);
 
 // filter
-const filter = ref(false)
-const contrast = ref(100)
-const blur = ref(0)
-const hueRotate = ref(0)
-const invert = ref(0)
-const saturate = ref(100)
-const sepia = ref(0)
-const magnifier = ref(false)
-const zoomFactor = ref(1)
-const objectsFit = ref(['Contain', 'Cover', 'Scale-down', 'Fill', 'None'])
-const objectFitSelected = ref(objectsFit.value[0])
-const filterUpdated = ref(false)
+const filter = ref(false);
+const contrast = ref(100);
+const blur = ref(0);
+const hueRotate = ref(0);
+const invert = ref(0);
+const saturate = ref(100);
+const sepia = ref(0);
+const magnifier = ref(false);
+const zoomFactor = ref(1);
+const objectsFit = ref(['Contain', 'Cover', 'Scale-down', 'Fill', 'None']);
+const objectFitSelected = ref(objectsFit.value[0]);
+const filterUpdated = ref(false);
 
-const { images, uploadImage } = useFile()
-const { loggedIn } = useUserSession()
+const { images, uploadImage } = useFile();
+const { loggedIn } = useUserSession();
 
-const isSmallScreen = useMediaQuery('(max-width: 1024px)')
-const { currentIndex, isFirstImg, isLastImg, downloadImage, applyFilters, initSwipe, convertBase64ToFile, magnifierImage } = useImageGallery()
+const isSmallScreen = useMediaQuery('(max-width: 1024px)');
+const { currentIndex, isFirstImg, isLastImg, downloadImage, applyFilters, initSwipe, convertBase64ToFile, magnifierImage } = useImageGallery();
 
-const active = useState()
-const route = useRoute()
-const router = useRouter()
+const active = useState();
+const route = useRoute();
+const router = useRouter();
 
 const image = computed(() => {
-  return images.value!.filter((file: BlobObject) => file.pathname.split('.')[0] === route.params.slug[0])[0]
-})
+  return images.value!.filter((file: BlobObject) => file.pathname.split('.')[0] === route.params.slug[0])[0];
+});
 
 onKeyStroke('Escape', () => {
-  router.push('/')
-})
+  router.push('/');
+});
 
 onKeyStroke('ArrowLeft', () => {
   if (isFirstImg.value)
-    router.push('/')
+    router.push('/');
   else
-    router.push(`/detail/${images.value![currentIndex.value - 1].pathname.split('.')[0]}`)
-})
+    router.push(`/detail/${images.value![currentIndex.value - 1].pathname.split('.')[0]}`);
+});
 
 onKeyStroke('ArrowRight', () => {
   if (isLastImg.value)
-    router.push('/')
+    router.push('/');
   else
-    router.push(`/detail/${images.value![currentIndex.value + 1].pathname.split('.')[0]}`)
-})
+    router.push(`/detail/${images.value![currentIndex.value + 1].pathname.split('.')[0]}`);
+});
 
 function resetFilter() {
-  contrast.value = 100
-  blur.value = 0
-  invert.value = 0
-  saturate.value = 100
-  hueRotate.value = 0
-  sepia.value = 0
-  filterUpdated.value = false
-  magnifier.value = false
-  zoomFactor.value = 1
+  contrast.value = 100;
+  blur.value = 0;
+  invert.value = 0;
+  saturate.value = 100;
+  hueRotate.value = 0;
+  sepia.value = 0;
+  filterUpdated.value = false;
+  magnifier.value = false;
+  zoomFactor.value = 1;
 }
 
 function cancelFilter() {
-  filter.value = false
+  filter.value = false;
 
-  resetFilter()
+  resetFilter();
 }
 
 async function saveImage() {
   if (filterUpdated.value && imageEl.value) {
-    savingImg.value = true
+    savingImg.value = true;
 
-    const modifiedImage = await applyFilters(imageEl.value, contrast.value, blur.value, invert.value, saturate.value, hueRotate.value, sepia.value)
+    const modifiedImage = await applyFilters(imageEl.value, contrast.value, blur.value, invert.value, saturate.value, hueRotate.value, sepia.value);
 
-    const imageToUpload = await convertBase64ToFile(modifiedImage, image)
+    const imageToUpload = await convertBase64ToFile(modifiedImage, image);
 
-    await uploadImage(imageToUpload, true).finally(() => savingImg.value = false)
+    await uploadImage(imageToUpload, true).finally(() => savingImg.value = false);
   }
 }
 
 watch([contrast, blur, invert, saturate, hueRotate, sepia], () => {
-  filterUpdated.value = true
-})
+  filterUpdated.value = true;
+});
 
 onMounted(() => {
-  initSwipe(imageEl)
-})
+  initSwipe(imageEl);
+});
 </script>
 
 <template>

@@ -1,4 +1,4 @@
 export function useFile() {
-  const { $file } = useNuxtApp()
-  return $file
+  const { $file } = useNuxtApp();
+  return $file;
 }

@@ -3,10 +3,10 @@ export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
 
   modules: [
-    '@nuxthub/core',
+    '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/ui',
-    '@nuxt/eslint',
+    '@nuxthub/core',
     '@vueuse/nuxt',
     'nuxt-auth-utils'
   ],
@@ -29,8 +29,9 @@ export default defineNuxtConfig({
     config: {
       stylistic: {
         quotes: 'single',
-        commaDangle: 'never'
+        commaDangle: 'never',
+        semi: true
       }
     }
   }
-})
+});
