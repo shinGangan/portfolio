@@ -1,0 +1,9 @@
+'🏠 chore':
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**/*'
+          - '.vscode/*'
+'✍ documentation':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'docs/**/*'
