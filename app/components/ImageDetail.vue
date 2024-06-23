@@ -123,7 +123,7 @@ const badge = ref<string[]>(['Product']);
           class="flex flex-col gap-y-12 pb-6 h-[60dvh]"
           :class="filter ? 'block opacity-100' : 'hidden opacity-0'"
         >
-          <div class="flex flex-col gap-y-4">
+          <div class="flex flex-col gap-y-4 text-white">
             {{ description }}
           </div>
         </div>
@@ -141,7 +141,7 @@ const badge = ref<string[]>(['Product']);
               v-for="b in badge"
               :key="b"
               :ui="{ rounded: 'rounded-full' }"
-              color="primary"
+              color="green"
               :label="b"
             />
           </template>
