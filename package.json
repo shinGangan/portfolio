@@ -17,14 +17,15 @@
     "node": "^20.0.0"
   },
   "scripts": {
+    "clean": "nuxt cleanup && rm -rf node_modules",
     "dev": "nuxt dev",
     "build": "nuxt build",
     "preview": "nuxt preview",
-    "deploy": "nuxthub deploy",
+    "deploy": "npx nuxthub@latest deploy",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "nuxt typecheck",
+    "typecheck": "npx nuxi@latest typecheck",
     "logs": "wrangler pages deployment tail",
     "logs:preview": "wrangler pages deployment tail --environment preview"
   },
