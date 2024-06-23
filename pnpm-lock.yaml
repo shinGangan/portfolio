@@ -30,6 +30,9 @@ importers:
         specifier: ^0.0.25
         version: 0.0.25(magicast@0.3.4)(rollup@4.18.0)
     devDependencies:
+      '@cdktf/provider-cloudflare':
+        specifier: ^11.13.0
+        version: 11.13.0(cdktf@0.20.7(constructs@10.1.167))(constructs@10.1.167)
       '@iconify-json/simple-icons':
         specifier: ^1.1.105
         version: 1.1.106
@@ -261,6 +264,13 @@ packages:
 
   '@capsizecss/unpack@2.2.0':
     resolution: {integrity: sha512-IBBiVmEFSTt+wMkhy063mboZvIvqkndVYu+l62iwOcOW4nf0VJa8+reZ4RgL1FcyfjVIjMkBwKIhydgZHPILCQ==}
+
+  '@cdktf/provider-cloudflare@11.13.0':
+    resolution: {integrity: sha512-lBtWI5HuVj/jhUh2Jwsq0IZHZvaHvLA+vZuQlxqKKr2ISy7GEJ3/oTxW9KhGdTqBYVJl/SqWe+kVe4rDVehBHw==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      cdktf: ^0.20.0
+      constructs: ^10.3.0
 
   '@cloudflare/kv-asset-handler@0.3.3':
     resolution: {integrity: sha512-wpE+WiWW2kUNwNE0xyl4CtTAs+STjGtouHGiZPGRaisGB7eXXdbvfZdOrQJQVKgTxZiNAgVgmc7fj0sUmd8zyA==}
@@ -2166,6 +2176,15 @@ packages:
   capnp-ts@0.7.0:
     resolution: {integrity: sha512-XKxXAC3HVPv7r674zP0VC3RTXz+/JKhfyw94ljvF80yynK6VkTnqE3jMuN8b3dUVmmc43TjyxjW4KTsmB3c86g==}
 
+  cdktf@0.20.7:
+    resolution: {integrity: sha512-7za8QQYM1G0/6JUCYY+5smwNfNfbiZVPCMD7SeX2rTYmOLaGEkHZtMvuUTEKSqsE56fKudnfVd2J2edz2CETFg==}
+    peerDependencies:
+      constructs: ^10.0.25
+    bundledDependencies:
+      - archiver
+      - json-stable-stringify
+      - semver
+
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -2298,6 +2317,10 @@ packages:
 
   console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
+
+  constructs@10.1.167:
+    resolution: {integrity: sha512-zGt88EmcJUtWbd/sTM9GKcHRjYWzEx5jzMYuK69vl25Dj01sJAc7uF6AEJgZBtlLAc3VnRUvzgitHwmJkS9BFw==}
+    engines: {node: '>= 14.17.0'}
 
   content-disposition@0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
@@ -5585,6 +5608,11 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
+  '@cdktf/provider-cloudflare@11.13.0(cdktf@0.20.7(constructs@10.1.167))(constructs@10.1.167)':
+    dependencies:
+      cdktf: 0.20.7(constructs@10.1.167)
+      constructs: 10.1.167
+
   '@cloudflare/kv-asset-handler@0.3.3':
     dependencies:
       mime: 3.0.0
@@ -7959,6 +7987,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  cdktf@0.20.7(constructs@10.1.167):
+    dependencies:
+      constructs: 10.1.167
+
   chalk@2.4.2:
     dependencies:
       ansi-styles: 3.2.1
@@ -8071,6 +8103,8 @@ snapshots:
   consola@3.2.3: {}
 
   console-control-strings@1.1.0: {}
+
+  constructs@10.1.167: {}
 
   content-disposition@0.5.4:
     dependencies:
