@@ -23,7 +23,7 @@ const { images, uploadImage } = useFile();
 const { loggedIn } = useUserSession();
 
 const isSmallScreen = useMediaQuery('(max-width: 1024px)');
-const { currentIndex, isFirstImg, isLastImg, downloadImage, applyFilters, initSwipe, convertBase64ToFile, magnifierImage } = useImageGallery();
+const { currentIndex, isFirstImg, isLastImg, applyFilters, initSwipe, convertBase64ToFile, magnifierImage } = useImageGallery();
 
 const active = useState();
 const route = useRoute();
@@ -235,18 +235,6 @@ onMounted(() => {
                     :to="`/images/${image.pathname}`"
                     target="_blank"
                     aria-label="Open original image"
-                  />
-                </UTooltip>
-                <!-- download original or modified image -->
-                <UTooltip text="Download">
-                  <UButton
-                    variant="ghost"
-                    color="gray"
-                    icon="i-heroicons-arrow-down-tray-20-solid"
-                    size="md"
-                    class="hidden md:flex"
-                    aria-label="Download original or modified image"
-                    @click="downloadImage(image.pathname, imageEl, contrast, blur, invert, saturate, hueRotate, sepia)"
                   />
                 </UTooltip>
               </div>
