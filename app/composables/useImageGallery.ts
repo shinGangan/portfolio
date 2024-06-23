@@ -52,26 +52,6 @@ export function useImageGallery() {
     return imageToDownload;
   };
 
-  const downloadImage = async (filename: string, poster: HTMLImageElement, contrast: number, blur: number, invert: number, saturate: number, hueRotate: number, sepia: number) => {
-    await applyFilters(poster, contrast, blur, invert, saturate, hueRotate, sepia);
-
-    if (!imageToDownload.value) {
-      return;
-    }
-
-    await useFetch(imageToDownload.value.src, {
-      baseURL: `${config.public.imageApi}/ipx/_/tmdb/`
-    }).then((response) => {
-      const blob = response.data.value as Blob;
-      const url: string = URL.createObjectURL(blob);
-      const link: HTMLAnchorElement = document.createElement('a');
-
-      link.setAttribute('href', url);
-      link.setAttribute('download', filename);
-      link.click();
-    });
-  };
-
   const convertBase64ToFile = async (image: Ref<HTMLImageElement>, originalImage: Ref<BlobObject>) => {
     const url = image.value.currentSrc;
 
@@ -117,7 +97,6 @@ export function useImageGallery() {
   };
 
   return {
-    downloadImage,
     applyFilters,
     convertBase64ToFile,
     magnifierImage,
