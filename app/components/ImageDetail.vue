@@ -180,7 +180,7 @@ const badge = ref<string[]>(['Product']);
                     variant="ghost"
                     color="gray"
                     size="md"
-                    icon="i-heroicons-magnifying-glass-20-solid"
+                    icon="i-heroicons-chevron-double-right-20-solid"
                     aria-label="Show product description"
                     class="hidden lg:flex"
                     @click="filter = true"
