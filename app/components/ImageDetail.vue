@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { UBadge } from '#build/components';
+
 const bottomMenu = ref();
 const imageEl = ref<HTMLImageElement>();
 const magnifierEl = ref<HTMLElement>();
@@ -6,6 +8,7 @@ const imageContainer = ref<HTMLElement>();
 const savingImg = ref(false);
 
 // filter
+// TODO: filter = description になる
 const filter = ref(false);
 const contrast = ref(100);
 const blur = ref(0);
@@ -88,6 +91,16 @@ watch([contrast, blur, invert, saturate, hueRotate, sepia], () => {
 onMounted(() => {
   initSwipe(imageEl);
 });
+
+/**
+ * NOTE: details ではsummary、descriptionを表示する.
+ * TODO: summary, description, link はR2にjsonを置いたり、API的に一覧を取得したい
+ */
+const summary = ref<string>('Product Summary');
+const description = ref<string>('これはテストの説明文です。\n\
+2024年初めからNuxtのコントリビューターとして活動しています。');
+const link = ref<string>('https://nuxters.nuxt.com/shinGangan');
+const badge = ref<string[]>(['Product']);
 </script>
 
 <template>
@@ -113,66 +126,7 @@ onMounted(() => {
           :class="filter ? 'block opacity-100' : 'hidden opacity-0'"
         >
           <div class="flex flex-col gap-y-4">
-            <!-- filters list -->
-            <div class="flex gap-x-4 justify-between items-center pb-4">
-              <span class="text-white w-40">Fit</span>
-              <USelectMenu
-                v-model="objectFitSelected"
-                :options="objectsFit"
-                class="!w-52 mr-4"
-              />
-            </div>
-
-            <div class="flex gap-x-4 w-full justify-end pr-4 pb-4">
-              <UCheckbox
-                v-model="magnifier"
-                name="magnifier"
-                label="Magnifier"
-                color="primary"
-                :ui="{ label: 'text-gray-300 dark:text-gray-300' }"
-              />
-              <UIcon
-                name="i-heroicons-magnifying-glass-solid"
-                class="w-5 h-5 text-gray-300"
-              />
-            </div>
-
-            <UGauge
-              v-if="magnifier"
-              v-model="zoomFactor"
-              :max="4"
-              title="Zoom level"
-            />
-            <UGauge
-              v-model="sepia"
-              :max="100"
-              title="Sepia"
-            />
-            <UGauge
-              v-model="hueRotate"
-              :max="180"
-              title="Hue-rotate"
-            />
-            <UGauge
-              v-model="saturate"
-              :max="100"
-              title="Saturate"
-            />
-            <UGauge
-              v-model="invert"
-              :max="100"
-              title="Invert"
-            />
-            <UGauge
-              v-model="contrast"
-              :max="200"
-              title="Contrast"
-            />
-            <UGauge
-              v-model="blur"
-              :max="5"
-              title="Blur"
-            />
+            {{ description }}
           </div>
         </div>
       </ImageFilters>
@@ -184,9 +138,18 @@ onMounted(() => {
           class="bottom-menu"
           :class="{ 'right-[350px]': filter }"
         >
+          <template #logo>
+            <UBadge
+              v-for="b in badge"
+              :key="b"
+              :ui="{ rounded: 'rounded-full' }"
+              color="primary"
+              :label="b"
+            />
+          </template>
           <template #description>
             <p class="bottom-menu-description">
-              Nuxt Image Gallery
+              {{ summary }}
             </p>
           </template>
           <!-- Filters -->
@@ -212,29 +175,29 @@ onMounted(() => {
                     class="back flex transition-colors duration-200"
                   />
                 </UTooltip>
-                <!-- open filters -->
+                <!-- open description -->
                 <!-- v-if="loggedIn"  -->
-                <UTooltip text="Add filters">
+                <UTooltip text="Show description">
                   <UButton
                     variant="ghost"
                     color="gray"
                     size="md"
-                    icon="i-heroicons-paint-brush-20-solid"
-                    aria-label="Add filters on image"
+                    icon="i-heroicons-magnifying-glass-20-solid"
+                    aria-label="Show product description"
                     class="hidden lg:flex"
                     @click="filter = true"
                   />
                 </UTooltip>
                 <!-- open original -->
-                <UTooltip text="Open in a new tab">
+                <UTooltip text="Go to product page">
                   <UButton
                     variant="ghost"
                     color="gray"
                     icon="i-heroicons-arrow-up-right-20-solid"
                     size="md"
-                    :to="`/images/${image.pathname}`"
+                    :to="link"
                     target="_blank"
-                    aria-label="Open original image"
+                    aria-label="Go to product page"
                   />
                 </UTooltip>
               </div>
