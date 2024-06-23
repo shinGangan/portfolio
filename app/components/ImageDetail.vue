@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { UBadge } from '#build/components';
-
 const bottomMenu = ref();
 const imageEl = ref<HTMLImageElement>();
 const magnifierEl = ref<HTMLElement>();
